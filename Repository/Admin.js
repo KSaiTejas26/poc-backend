@@ -1,4 +1,4 @@
-import Repo from './crudrepository';
+const Repo = require('./crudrepository');
 const Admin = require('../Models/Admin').Admin;
 
 class AdminRepo extends Repo
@@ -9,4 +9,4 @@ class AdminRepo extends Repo
     }
 }
 
-module.export = AdminRepo;
+module.exports = AdminRepo;

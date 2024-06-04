@@ -1,5 +1,5 @@
 const router = require('express').Router()
-import VendorController from '../../Controllers/vendorcontroller';
+const VendorController = require('../../Controllers/vendorcontroller');
 
 router.get('/getvendorproducts',VendorController.getallvendorproducts)
 router.get('/vendorprofile',VendorController.getvendorprofile)

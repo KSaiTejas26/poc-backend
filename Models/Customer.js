@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const customerSchema = new mongoose.Schema({
-  customer_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    default: mongoose.Types.ObjectId,
-    required: true
-  },
+  // customer_id: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   default: mongoose.Types.ObjectId,
+  //   required: true
+  // },
   customer_first_name: {
     type: String,
     required: true

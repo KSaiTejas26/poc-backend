@@ -1,5 +1,5 @@
-import Service from './service';
-import ProductRepo from '../Repository/Product';
+const Service = require('./service');
+const ProductRepo = require('../Repository/Product');
 class ProductService extends Service
 {
     constructor()

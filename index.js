@@ -3,7 +3,7 @@ const app = express()
 const port = 3000
 const connecttoMongo = require('./db');
 const bodyParser = require('body-parser');
-import apirouter from './Routes/index.js';
+const apirouter = require('./Routes/index.js');
 const cors = require('cors');
 
 app.use(cors());

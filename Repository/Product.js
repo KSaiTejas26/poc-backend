@@ -1,4 +1,4 @@
-import Repo from './crudrepository';
+const Repo = require('./crudrepository');
 const Product = require('../Models/Product').product;
 
 class ProductRepo extends Repo
@@ -9,4 +9,4 @@ class ProductRepo extends Repo
     }
 }
 
-module.export = ProductRepo;
+module.exports = ProductRepo;

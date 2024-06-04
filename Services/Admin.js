@@ -1,5 +1,5 @@
-import Service from "./service";
-import AdminRepo from '../Repository/Admin';
+const Service = require("./service");
+const AdminRepo = require('../Repository/Admin');
 
 class AdminService extends Service
 {

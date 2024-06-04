@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const vendorSchema = new mongoose.Schema({
-  vendor_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    default: mongoose.Types.ObjectId,
-    required: true
-  },
+  // vendor_id: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   default: mongoose.Types.ObjectId,
+  //   required: true
+  // },
   vendor_first_name: {
     type: String,
     required: true
@@ -103,6 +103,6 @@ const vendorSchema = new mongoose.Schema({
   }
 });
 
-const Vendor = mongoose.model('Vendor', vendorSchema);
+const Vendor =  mongoose.model('Vendor', vendorSchema);
 
 module.exports = Vendor;

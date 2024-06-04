@@ -1,4 +1,4 @@
-import Repo from './crudrepository';
+const Repo = require('./crudrepository');
 const Vendor = require('../Models/VendorRequest').VendorRequest;
 
 class VendorRequestRepo extends Repo
@@ -9,4 +9,4 @@ class VendorRequestRepo extends Repo
     }
 }
 
-module.export = VendorRequestRepo;
+module.exports = VendorRequestRepo;
