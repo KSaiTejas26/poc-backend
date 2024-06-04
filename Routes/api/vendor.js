@@ -1,8 +1,11 @@
 const router = require('express').Router()
-const VendorController = require('../../Controllers/vendorcontroller');
+const  VendorController  =new require('../../Controllers/vendorcontroller');
 
-router.get('/getvendorproducts',VendorController.getallvendorproducts)
-router.get('/vendorprofile',VendorController.getvendorprofile)
-router.delete('/vendors/:vendorId/products/:productId',VendorController.delete)
-router.post('/vendors/:vendorId/addproduct/',VendorController.addProduct)
-router.put('/profile/:id',VendorController.editprofile)
+router.get('/getvendorproducts/:id',VendorController.getAllVendorProducts) // done
+router.get('/vendorprofile/:id',VendorController.getVendorProfile) // done
+router.delete('/vendors/:vendorId/products/:productId',VendorController.deleteProduct) // done
+router.post('/vendors/:vendorId/addproduct/',VendorController.addProduct) // done
+router.put('/profile/:id',VendorController.editProfile) // done
+
+
+module.exports=router;

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const admincontroller = require('../Controllers/admincontroller')
-const vendorcontroller = require('../Controllers/vendorcontroller')
+const adminroute = require('./api/admin')
+const vendorroute = require('./api/vendor')
 
-router.use('/admin', admincontroller);
-router.use('/vendor', vendorcontroller);
+router.use('/admin', adminroute);
+router.use('/vendor', vendorroute);
 
 module.exports=router;

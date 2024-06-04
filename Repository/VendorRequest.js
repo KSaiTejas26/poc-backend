@@ -1,5 +1,5 @@
 const Repo = require('./crudrepository');
-const Vendor = require('../Models/VendorRequest').VendorRequest;
+const Vendor = require('../Models/VendorRequest');
 
 class VendorRequestRepo extends Repo
 {

@@ -1,5 +1,5 @@
 const Repo = require('./crudrepository');
-const Admin = require('../Models/Admin').Admin;
+const Admin = require('../Models/Admin');
 
 class AdminRepo extends Repo
 {

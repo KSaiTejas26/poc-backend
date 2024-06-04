@@ -1,11 +1,13 @@
-const router = require('express').Router()
-const AdminController = require('../../Controllers/admincontroller');
+const router = require('express').Router();
+const adminController = require('../../Controllers/admincontroller'); 
 
-router.get('/allproducts',AdminController.getallproducts)
-router.get('/adminprofile',AdminController.getprofile)
-router.get('/requests',AdminController.getrequests)
-router.get('/vendors',AdminController.allvendor)
-router.delete('/vendors/:vendorId/products/:productId',AdminController.delete)
-router.delete('/vendor/delete/:id',AdminController.deletevendor)
-router.put('/profile/:id',AdminController.updateprofile)
-router.post('/addproduct/:id',AdminController.addproduct)
+router.get('/allproducts', adminController.getAllProducts); // done
+router.get('/adminprofile/:id', adminController.getProfile); // done
+router.get('/requests', adminController.getRequests); // done
+router.get('/vendors', adminController.getAllVendors); // done
+router.delete('/vendors/:vendorId/products/:productId', adminController.deleteProduct); // done
+router.delete('/vendor/delete/:id', adminController.deleteVendor); // working but need to update the doubt and code 
+router.put('/profile/:id', adminController.updateProfile); // done
+router.post('/addproduct/:id', adminController.addProduct); // done 
+
+module.exports = router;
