@@ -52,8 +52,8 @@ class Service {
       if (!data) {
         throw new Error('Not found');
       }
-      await this.repository.delete(id);
-      return null;
+      const deldata = await this.repository.delete(id);
+      return deldata;
     }
   
     //Vendor product array

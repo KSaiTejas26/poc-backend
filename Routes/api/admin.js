@@ -9,5 +9,8 @@ router.delete('/vendors/:vendorId/products/:productId', adminController.deletePr
 router.delete('/vendor/delete/:id', adminController.deleteVendor); // working but need to update the doubt and code 
 router.put('/profile/:id', adminController.updateProfile); // done
 router.post('/addproduct/:id', adminController.addProduct); // done 
+router.put('/request/accept/:id',adminController.acceptRequest);
+router.put('/request/reject/:id',adminController.rejectedRequest);   
+
 
 module.exports = router;

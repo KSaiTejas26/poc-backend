@@ -7,6 +7,7 @@ class VendorRequestRepo extends Repo
     {
         super(Vendor);
     }
+    
 }
 
 module.exports = VendorRequestRepo;
