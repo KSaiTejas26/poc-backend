@@ -56,4 +56,4 @@ class CrudRepository {
     }
   }
   
-  export default CrudRepository;
+module.exports=CrudRepository;
