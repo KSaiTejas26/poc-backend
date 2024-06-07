@@ -11,6 +11,10 @@ router.put('/profile/:id', adminController.updateProfile); // done
 router.post('/addproduct/:id', adminController.addProduct); // done 
 router.put('/request/accept/:id',adminController.acceptRequest);
 router.put('/request/reject/:id',adminController.rejectedRequest);   
+router.post('/addvendor',adminController.addVendor);
+router.delete('/vendor/deleteMany',adminController.deleteManyRequests);
+router.delete('/vendor/deleteMany/accept',adminController.acceptSelectedRequest);
+router.delete('/vendor/deleteMany/reject',adminController.rejectSelectedRequest);
 
 
 module.exports = router;

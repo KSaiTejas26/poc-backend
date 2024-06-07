@@ -92,10 +92,10 @@ const vendorSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  // vendor_image: {
-  //   type: String,
-  //   required: true
-  // },
+  vendor_image: {
+    type: String,
+    required: true
+  },
   products : {
     type:[mongoose.Schema.Types.ObjectId],
     required:true,

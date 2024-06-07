@@ -38,12 +38,10 @@ class Service {
       if (!data) {
         throw new Error('Not found');
       }
-      const payload = {
-        ...data.dataValues,
-        ...body,
-      };
-      await this.repository.update(id, payload);
-      return payload;
+      
+      console.log('in payload ',body);
+      await this.repository.update(id, body);
+      return body;
     }
   
     async remove(id) {

@@ -110,6 +110,7 @@ VendorController.addProduct = async (req, res) => {
 
 VendorController.editProfile = async (req, res) => {
   try {
+    console.log(req.body);
     const data = await new VendorServices().update(req.params.id, req.body);
     return res.status(200).json({ message: 'endor profile updated successfully' });
   } catch (error) {

@@ -2,6 +2,8 @@ const AdminServices = require('../Services/Admin');
 const ProductServices = require('../Services/Product');
 const VendorRequestService = require('../Services/VendorRequest');
 const VendorServices = require('../Services/Vendor');
+const VendorService = require('../Services/Vendor');
+const VendorRequest = require('../Models/VendorRequest');
 // const AdminController = module.exports;
 // class AdminController {
 //     async getAllProducts(req, res) {
@@ -243,5 +245,104 @@ AdminController.rejectedRequest = async (req,res)=>{
   {
     console.log('error while accepting the request by admin ',error);
     res.status(404).json({error,message:"error while accepting the request by admin"});
+  }
+}
+
+
+AdminController.addVendor = async (req,res)=>{
+  try
+  {
+    const response = await new VendorService().create(req.body);
+    console.log('new vendor added succesfully');
+    res.status(200).send('new vendor added succesfully'); 
+  }
+  catch(e)
+  {
+    console.log('error while adding the vendor by admin');
+    res.status(404).send('Error while adding the vendor by admin')
+  }
+}
+
+AdminController.deleteManyRequests = async (req,res)=>{
+  try
+  {
+    const arr = req.body;
+    console.log(req.body);
+    for(var i=0;i<arr.length;i++)
+    {
+      const response = await new VendorService().remove(arr[i]);
+      console.log('euuuuuuu',arr[i]);
+    }
+    console.log('deleted vendors succesfully using checkboxes');
+    res.status(200).send('deleted vendors succesfully using checlboxes');
+  }
+  catch(e)
+  {
+    console.log('error while deleting the requests by admin using checkboxes');
+    res.status(404).send('error while deleting the requests by admin using checkboxes');
+  }
+}
+
+AdminController.acceptSelectedRequest = async (req,res)=>{
+  try
+  {
+    const arr = req.body;
+    for(var i=0;i<arr.length;i++)
+    {
+      const response = await new VendorRequestService().remove(arr[i]);
+      const data = response;
+      const newData = {
+        _id: data._id,
+        vendor_first_name: data.vendor_first_name,
+        vendor_last_name: data.vendor_last_name,
+        email: data.email,
+        phone_number: data.phone_number,
+        business_name: data.business_name,
+        gst_number: data.gst_number,
+        business_registration_number: data.business_registration_number,
+        company_website_url: data.company_website_url,
+        password: data.password,
+        country: data.country,
+        street_address: data.street_address,
+        city: data.city,
+        state: data.state,
+        zip_code: data.zip_code,
+        categories_list: data.categories_list,
+        bank_account_number: data.bank_account_number,
+        bank_account_name: data.bank_account_name,
+        ifsc_code: data.ifsc_code,
+        account_holder_name: data.account_holder_name,
+        expected_order_processing_time: data.expected_order_processing_time,
+        average_shipping_time: data.average_shipping_time,
+        vendor_image : data.vendor_image,
+        products: []
+      }
+      const data1 = await new VendorServices().create(newData);
+    }
+    console.log('requests of vendors accepted succesfully by admin');
+    res.status(200).send('request of vendors accepted succesfully by admin');
+  }
+  catch(e)
+  {
+    console.log('error while accepting the checkbox request by admin');
+    res.status(200).send('error while accepting the checkbox request by admin')
+  }
+}
+
+AdminController.rejectSelectedRequest = async (req,res)=>{
+  try
+  {
+    const arr = req.body;
+    for(var i=0;i<arr.length;i++)
+    {
+      const response = await new VendorRequestService().remove(arr[i])
+    }
+    console.log('succesfully rejected vendor request by admin');
+    res.status(200).send('sucessfully rejected vendor request by admin');
+  }
+  catch(e)
+  {
+    console.log('error while rejecting the request of vendor by admin');
+    res.status(404).send('error while rejecting the request of vendor by admin');
   }
 }

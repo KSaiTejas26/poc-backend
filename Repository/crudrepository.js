@@ -48,15 +48,32 @@ class CrudRepository {
   
     async update(id, data) {
       try {
+        console.log(id + "  " + JSON.stringify(data));
         const result = await this.model.findByIdAndUpdate(id, data, {
           new: true,
+          returnDocument: "after"
         });
+        console.log(result);
         return result;
       } catch (error) {
         console.log("Something went wrong");
         console.log(error);
       }
     }
+
+    // async updateImageUrl(id, data) {
+    //   try {
+    //     console.log(id+"  "+data.image);
+    //     const result = await this.model.findByIdAndUpdate(id, data.image, {
+    //       new: true,
+    //     });
+    //     console.log(result);
+    //     return result;
+    //   } catch (error) {
+    //     console.log("Something went wrong");
+    //     console.log(error);
+    //   }
+    // }
 
     //Vendor Product array
     async getByIds(ids) {
