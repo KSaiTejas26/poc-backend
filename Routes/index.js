@@ -6,4 +6,5 @@ const vendorroute = require('./api/vendor')
 router.use('/admin', adminroute);
 router.use('/vendor', vendorroute);
 
+
 module.exports=router;

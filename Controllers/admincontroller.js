@@ -182,7 +182,9 @@ AdminController.updateProfile = async (req, res) => {
 
 AdminController.addProduct = async (req, res) => {
   try {
+    // console.log('heyyyyyyyyyyyyyyyyyyyyyyyyyyy',req.body," ",req.params.id)
     const data = await new ProductServices().create(req.body);
+    console.log('dataaasa ',data._id);
     await new VendorServices().addtoArray(req.params.id, data._id);
     console.log('new product added successfully by admin');
     return res.status(200).json({ message: 'new product added successfully by admin' });

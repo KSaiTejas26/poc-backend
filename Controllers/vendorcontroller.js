@@ -118,3 +118,29 @@ VendorController.editProfile = async (req, res) => {
     return res.status(404).json({ error, message: 'error while updating the profile details of the vendor' });
   }
 };
+
+VendorController.getsoloproduct = async (req,res)=>{
+  try
+  {
+    const response = await new ProductServices().findOne(req.params.id);
+    res.status(200).send(response);
+  }
+  catch(e)
+  {
+    console.log('error while getting solo product details');
+    res.status(404).send('error while getting solo product details ')
+  }
+}
+
+VendorController.updateProduct = async(req,res)=>{
+  try
+  {
+    const response = await new ProductServices().update(req.params.id,req.body);
+    res.status(200).send('succesfully updated the data of soloproduct page');
+  }
+  catch(e)
+  {
+    console.log('error while updating the product details in soloproduct page');
+    res.status(404).send('error while updating the product details in soloproduct page');
+  }
+}

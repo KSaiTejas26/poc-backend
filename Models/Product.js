@@ -26,6 +26,10 @@ const ProductSchema = new Schema({
     type: String,
     required: true
   },
+  main_image: {
+    type: String,
+    required: true
+  },
   images: {
     type: [String],
     required: true
@@ -60,10 +64,10 @@ const ProductSchema = new Schema({
     type: Number,
     default: 0
   },
-  color: {
-    type: [String],
-    required: true
-  }
+  // color: {
+  //   type: [String],
+  //   required: true
+  // }
 });
 
 const product = mongoose.model('Product', ProductSchema);

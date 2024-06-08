@@ -7,5 +7,8 @@ router.delete('/vendors/:vendorId/products/:productId',VendorController.deletePr
 router.post('/vendors/:vendorId/addproduct/',VendorController.addProduct) // done
 router.put('/profile/:id',VendorController.editProfile) // done
 
+router.get('/getsoloproduct/:id',VendorController.getsoloproduct)
+router.put('/soloproduct/update/:id',VendorController.updateProduct);
+
 
 module.exports=router;

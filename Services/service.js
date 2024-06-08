@@ -8,6 +8,7 @@ class Service {
   
     async create(body) {
       console.log('body','hiiii')
+      console.log(body);
       const data = await this.repository.create(body);
       if (!data) {
         throw new Error('Not created');
@@ -73,12 +74,13 @@ class Service {
       return data;
     }
   
-    async addtoArray(pid, vid) {
+    async addtoArray(vid, pid) {
       const data = await this.findOne(vid);
       if (!data) {
         throw new Error('Not found');
       }
       // data.products = data.products || [];
+      console.log('in services data ',data);
       data.products.push(pid);
       await this.update(vid, data);
       return data;
