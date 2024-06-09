@@ -25,7 +25,7 @@ const customerSchema = new mongoose.Schema({
   },
   customer_image: {
     type: String,
-    required: true
+    // required: true
   }
 });
 

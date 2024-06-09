@@ -94,7 +94,7 @@ const vendorSchema = new mongoose.Schema({
   },
   vendor_image: {
     type: String,
-    required: true
+    // required: true
   },
 });
 

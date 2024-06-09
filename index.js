@@ -5,6 +5,9 @@ const connecttoMongo = require('./db');
 const bodyParser = require('body-parser');
 const apirouter = require('./Routes/index.js');
 const Category=require('./Routes/Category.js');
+const Customerauth=require('./Routes/Customerauth');
+const Adminauth=require('./Routes/Adminauth');
+const Vendorauth=require('./Routes/Vendorauth');
 const cors = require('cors');
 
 app.use(cors());
@@ -14,6 +17,11 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+app.use('/api/auth/customer',Customerauth);
+app.use('/api/auth/admin',Adminauth);
+app.use('/api/auth/vendor',Vendorauth);
+
 
 app.use('/api',apirouter);
 app.use('/api/category',Category);
