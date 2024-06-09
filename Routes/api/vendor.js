@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const  VendorController  =new require('../../Controllers/vendorcontroller');
-
+const fetchvendor = require('../../Middlewares/fetchvendor');
 router.get('/getvendorproducts/:id',VendorController.getAllVendorProducts) // done
 router.get('/vendorprofile/:id',VendorController.getVendorProfile) // done
 router.delete('/vendors/:vendorId/products/:productId',VendorController.deleteProduct) // done

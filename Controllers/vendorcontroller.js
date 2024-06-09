@@ -65,7 +65,7 @@ const ProductServices = require('../Services/Product');
 
 VendorController.getAllVendorProducts = async (req, res) => {
   try {
-    const vendorData = await new VendorServices().findOne(req.params.id);
+    const vendorData = await new VendorServices().findOne(req.vendor.id);
     if (!vendorData) return res.status(204).json({ message: 'no vendor found' });
     const productIds = vendorData.products;
     const products = await new ProductServices().findMany(productIds);
@@ -78,7 +78,7 @@ VendorController.getAllVendorProducts = async (req, res) => {
 
 VendorController.getVendorProfile = async (req, res) => {
   try {
-    const data = await new VendorServices().findOne(req.params.id);
+    const data = await new VendorServices().findOne(req.vendor.id);
     return res.status(200).json({ data, message: 'endor profile found' });
   } catch (error) {
     console.error(error);
@@ -89,7 +89,7 @@ VendorController.getVendorProfile = async (req, res) => {
 VendorController.deleteProduct = async (req, res) => {
   try {
     const data = await new ProductServices().remove(req.params.productId);
-    const response = await new VendorServices().removeFromArray(req.params.vendorId, req.params.productId);
+    const response = await new VendorServices().removeFromArray(req.vendor.id, req.params.productId);
     return res.status(200).json({ message: 'uccessfully deleted the product by vendor' });
   } catch (error) {
     console.error(error);
@@ -100,7 +100,7 @@ VendorController.deleteProduct = async (req, res) => {
 VendorController.addProduct = async (req, res) => {
   try {
     const data = await new ProductServices().create(req.body);
-    const response = await new VendorServices().addtoArray(req.params.vendorId, data._id);
+    const response = await new VendorServices().addtoArray(req.vendor.id, data._id);
     return res.status(200).json({ message: 'new product added by vendor successfully' });
   } catch (error) {
     console.error(error);
@@ -111,7 +111,7 @@ VendorController.addProduct = async (req, res) => {
 VendorController.editProfile = async (req, res) => {
   try {
     console.log(req.body);
-    const data = await new VendorServices().update(req.params.id, req.body);
+    const data = await new VendorServices().update(req.vendor.id, req.body);
     return res.status(200).json({ message: 'endor profile updated successfully' });
   } catch (error) {
     console.error(error);

@@ -60,7 +60,7 @@ const login = async (req,res)=>{
         };
         const auth_token = jwt.sign(data, JWT_SECRET);
         success=true;
-        res.json({success, auth_token: auth_token });
+        res.json({success, auth_token: auth_token,role:'customer' });
       } catch (error) {
         console.log(error);
         res

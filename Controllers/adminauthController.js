@@ -7,7 +7,7 @@ const JWT_SECRET = "Realpage@123";
 const login = async (req,res)=>{
     let success=false;
     const { email, password } = req.body;
-    console.log(password.toString());
+    console.log(req.body);
     try {
         let admin = await Admin.findOne({ email });
         if (!Admin) {
@@ -30,7 +30,7 @@ const login = async (req,res)=>{
         };
         const auth_token = jwt.sign(data, JWT_SECRET);
         success=true;
-        res.json({success, auth_token: auth_token });
+        res.json({success, auth_token: auth_token,role:'admin' });
       } catch (error) {
         console.log(error);
         res

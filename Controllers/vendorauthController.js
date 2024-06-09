@@ -12,10 +12,10 @@ const createuser=async (req,res)=>{
     
     try{
         let vendorrequest = await VendorRequest.findOne({ email: req.body.email });
-        
+        let vendor = await Vendor.findOne({email:req.body.email});
         console.log("done");
-      if (vendorrequest) {
-        console.log(vendorrequest);
+      if (vendorrequest || vendor) {
+        console.log(vendorrequest+" "+vendor);
         return res
           .status(400)
           .json({ success,error: "Sorry a vendor with this email already exists" });
@@ -79,7 +79,7 @@ const login = async (req,res)=>{
         };
         const auth_token = jwt.sign(data, JWT_SECRET);
         success=true;
-        res.json({success, auth_token: auth_token });
+        res.json({success, auth_token: auth_token,role:'vendor' });
       } catch (error) {
         console.log(error);
         res
