@@ -100,7 +100,7 @@ VendorController.deleteProduct = async (req, res) => {
 VendorController.addProduct = async (req, res) => {
   try {
     const data = await new ProductServices().create(req.body);
-    const response = await new VendorServices().addtoArray(data._id, req.params.vendorId);
+    const response = await new VendorServices().addtoArray(req.params.vendorId, data._id);
     return res.status(200).json({ message: 'new product added by vendor successfully' });
   } catch (error) {
     console.error(error);
