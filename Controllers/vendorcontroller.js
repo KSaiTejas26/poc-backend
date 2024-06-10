@@ -29,7 +29,7 @@ const ProductServices = require('../Services/Product');
 //   async deleteProduct(req, res) {
 //     try {
 //       const data = await new ProductServices.remove(req.params.productId);
-//       const response = await new VendorServices.removeFromArray(req.params.vendorId, req.params.productId);
+//       const response = await new VendorServices.removeFromArray(req.params.paramsId, req.params.productId);
 //       return res.status(200).send('successfully deleted the product by vendor');
 //     } catch (e) {
 //       console.log('error while deleting the product by vendor');
@@ -40,7 +40,7 @@ const ProductServices = require('../Services/Product');
 //   async addProduct(req, res) {
 //     try {
 //       const data = await new ProductServices.create(req.body);
-//       const response = await new VendorServices.addtoArray(data._id, req.params.vendorId);
+//       const response = await new VendorServices.addtoArray(data._id, req.params.paramsId);
 //       return res.status(200).send('new product added by vendor successfully');
 //     } catch (e) {
 //       console.log('error while adding the new product by vendor');
@@ -65,9 +65,11 @@ const ProductServices = require('../Services/Product');
 
 VendorController.getAllVendorProducts = async (req, res) => {
   try {
+    console.log('hiiii ',req.vendor);
     const vendorData = await new VendorServices().findOne(req.vendor.id);
     if (!vendorData) return res.status(204).json({ message: 'no vendor found' });
     const productIds = vendorData.products;
+    console.log('productiddssss ',productIds);
     const products = await new ProductServices().findMany(productIds);
     return res.status(200).json({ products, message: 'products found' });
   } catch (error) {
@@ -79,7 +81,7 @@ VendorController.getAllVendorProducts = async (req, res) => {
 VendorController.getVendorProfile = async (req, res) => {
   try {
     const data = await new VendorServices().findOne(req.vendor.id);
-    return res.status(200).json({ data, message: 'endor profile found' });
+    return res.status(200).json({ data, message: 'vendor profile found' });
   } catch (error) {
     console.error(error);
     return res.status(404).json({ error, message: 'error while getting the profile info of the vendor' });
@@ -90,7 +92,7 @@ VendorController.deleteProduct = async (req, res) => {
   try {
     const data = await new ProductServices().remove(req.params.productId);
     const response = await new VendorServices().removeFromArray(req.vendor.id, req.params.productId);
-    return res.status(200).json({ message: 'uccessfully deleted the product by vendor' });
+    return res.status(200).json({ message: 'successfully deleted the product by vendor' });
   } catch (error) {
     console.error(error);
     return res.status(404).json({ error, message: 'error while deleting the product by vendor' });
