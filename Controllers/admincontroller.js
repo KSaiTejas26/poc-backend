@@ -156,6 +156,7 @@ AdminController.deleteProduct = async (req, res) => {
 AdminController.deleteVendor = async (req, res) => {
   try {
     const data = await new VendorServices().remove(req.params.id);
+    console.log('hiiii ',req.body);
     const array = data.products;
     for(var i=0;i<array.length;i++)
     {

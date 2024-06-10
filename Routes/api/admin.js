@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const adminController = require('../../Controllers/admincontroller'); 
 const fetchadmin = require('../../Middlewares/fetchadmin');
+
+
+
 router.get('/allproducts', adminController.getAllProducts); // done
 router.get('/adminprofile', fetchadmin,adminController.getProfile); // done
 router.get('/requests', adminController.getRequests); // done

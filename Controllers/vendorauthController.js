@@ -8,7 +8,7 @@ const JWT_SECRET = "Realpage@123";
 const createuser=async (req,res)=>{
     let success=false;
     
-    
+    console.log('in body ',req.body)
     
     try{
         let vendorrequest = await VendorRequest.findOne({ email: req.body.email });
@@ -50,7 +50,7 @@ const createuser=async (req,res)=>{
     }
     catch (error) {
         console.log(error);
-        res.status(500).send(success,error);
+        res.status(400).send(success,error);
       }
 }
 const login = async (req,res)=>{
