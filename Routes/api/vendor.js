@@ -10,6 +10,6 @@ router.put('/editprofile',fetchvendor,VendorController.editProfile) // done
 
 router.get('/getsoloproduct/:id',VendorController.getsoloproduct)
 router.put('/soloproduct/update/:id',VendorController.updateProduct);
-
+router.delete('/products/:productId/:vendorId',VendorController.deleteProduct1);
 
 module.exports=router;

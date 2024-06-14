@@ -99,6 +99,17 @@ VendorController.deleteProduct = async (req, res) => {
   }
 };
 
+VendorController.deleteProduct1 = async (req, res) => {
+  try {
+    const data = await new ProductServices().remove(req.params.productId);
+    const response = await new VendorServices().removeFromArray(req.params.vendorId, req.params.productId);
+    return res.status(200).json({ message: 'successfully deleted the product by vendor' });
+  } catch (error) {
+    console.error(error);
+    return res.status(404).json({ error, message: 'error while deleting the product by vendor' });
+  }
+};
+
 VendorController.addProduct = async (req, res) => {
   try {
     const vid = req.vendor.id;

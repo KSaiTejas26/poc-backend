@@ -18,6 +18,6 @@ router.post('/addvendor',adminController.addVendor);
 router.delete('/vendor/deleteMany',adminController.deleteManyRequests);
 router.delete('/vendor/deleteMany/accept',adminController.acceptSelectedRequest);
 router.delete('/vendor/deleteMany/reject',adminController.rejectSelectedRequest);
-
+router.get('/getvendorproducts/:id',adminController.getVendorSpecific);
 
 module.exports = router;

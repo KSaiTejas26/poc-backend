@@ -4,6 +4,8 @@ const VendorRequestService = require('../Services/VendorRequest');
 const VendorServices = require('../Services/Vendor');
 const VendorService = require('../Services/Vendor');
 const VendorRequest = require('../Models/VendorRequest');
+
+
 // const AdminController = module.exports;
 // class AdminController {
 //     async getAllProducts(req, res) {
@@ -347,5 +349,23 @@ AdminController.rejectSelectedRequest = async (req,res)=>{
   {
     console.log('error while rejecting the request of vendor by admin');
     res.status(404).send('error while rejecting the request of vendor by admin');
+  }
+}
+
+
+AdminController.getVendorSpecific = async (req,res)=>{
+  try
+  {
+    const vendorData = await new VendorServices().findOne(req.params.id);
+    if (!vendorData) return res.status(204).json({ message: 'no vendor found' });
+    const productIds = vendorData.products;
+    console.log('productiddssss ',productIds);
+    const products = await new ProductServices().findMany(productIds);
+    return res.status(200).json({ products, message: 'products found' });
+  }
+  catch(e)
+  {
+    console.log('error while fetching products of vendor specific');
+    res.status(404).send('error while fetching products of vendor specific');
   }
 }
