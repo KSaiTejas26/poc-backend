@@ -6,9 +6,13 @@ const categorySchema = new mongoose.Schema({
     required: true
   },
   sub_categories_list: {
-    type: [String],
+    type: [{
+      name:{ type: String},
+      image:{type: String}
+    }],
     default: []
-  }
+  },
+  image:{type: String}
 });
 
 const Category = mongoose.model('Category', categorySchema);

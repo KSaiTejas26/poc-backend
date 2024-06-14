@@ -37,5 +37,27 @@ class cartrepository extends CrudRepository
             console.log(error);
         }
     }
+    async deleteCart(id,customer,res){
+        try{
+            const cart =await Cart.findById(id);
+            if(!cart)
+            {
+                console.log("Product Not Found")
+                return;
+            }
+            if(cart.customer_id.toString()!=customer)
+            {
+                console.log("Authorization Error");
+                return;
+            }
+            const response = await Cart.findByIdAndDelete(id);
+            return response;
+
+        }
+        catch(error)
+        {
+            console.log(error);
+        }
+    }
 }
 module.exports=cartrepository;

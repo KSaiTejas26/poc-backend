@@ -25,6 +25,19 @@ class CartService{
         }
         
     }
+    async deleteCart(id,customer,res)
+    {
+        try
+        {
+            const response = this.CartRepository.deleteCart(id,customer);
+            return response;
+
+        }
+        catch(error)
+        {
+            console.log(error);
+        }
+    }
 
 }
 module.exports=CartService;

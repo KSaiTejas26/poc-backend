@@ -27,4 +27,16 @@ const addCart=async(req,res)=>{
         res.status(500).json(error);
     }
 }
-module.exports={getCart,addCart};
+const deleteCart=async(req,res)=>{
+    try{
+
+        const {id}=req.params;
+        const response = cartservice.deleteCart(id,req.customer.id,res);
+        res.send("Deleted Successfully");
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+module.exports={getCart,addCart,deleteCart};
