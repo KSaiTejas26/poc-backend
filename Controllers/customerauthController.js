@@ -70,4 +70,13 @@ const login = async (req,res)=>{
     
 
 }
-module.exports={createuser,login};
+const getCustomer= async (req,res)=>{
+    try{
+    const customer=await Customer.findById(req.body.id).select("-password");
+    res.send(customer);
+    }
+    catch(error){
+        res.status(500).json({"error":"Cannot find user"});
+    }
+}
+module.exports={createuser,login,getCustomer};

@@ -8,6 +8,7 @@ const Category=require('./Routes/Category.js');
 const Customerauth=require('./Routes/Customerauth');
 const Adminauth=require('./Routes/Adminauth');
 const Vendorauth=require('./Routes/Vendorauth');
+const Product=require('./Routes/ProductRoute');
 const cors = require('cors');
 
 app.use(cors());
@@ -25,6 +26,9 @@ app.use('/api/auth/vendor',Vendorauth);
 
 app.use('/api',apirouter);
 app.use('/api/category',Category);
+
+app.use('/api/customer',Category);
+app.use('/api/product/',Product);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
