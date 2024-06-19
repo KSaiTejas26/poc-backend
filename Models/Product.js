@@ -12,7 +12,8 @@ const ProductSchema = new Schema({
   },
   vid: {
     type: String,
-    required: true
+    required: true,
+    ref:'Vendor'
   },
   vname: {
     type: String,

@@ -26,6 +26,10 @@ const customerSchema = new mongoose.Schema({
   customer_image: {
     type: String,
     // required: true
+  },
+  address:{
+    type:String,
+    required:true
   }
 });
 
