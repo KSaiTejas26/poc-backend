@@ -19,5 +19,6 @@ router.delete('/vendor/deleteMany',adminController.deleteManyRequests);
 router.delete('/vendor/deleteMany/accept',adminController.acceptSelectedRequest);
 router.delete('/vendor/deleteMany/reject',adminController.rejectSelectedRequest);
 router.get('/getvendorproducts/:id',adminController.getVendorSpecific);
+router.get('/allorders',adminController.getAllOrders);
 
 module.exports = router;

@@ -11,7 +11,7 @@ class Service {
       console.log(body);
       const data = await this.repository.create(body);
       if (!data) {
-        throw new Error('Not created');
+        return ('Not created');
       }
       return data;
     }
@@ -20,7 +20,7 @@ class Service {
       console.log('in find all',this.repository);
       const data = await this.repository.getAll();
       if (!data) {
-        throw new Error('Internal server error');
+        return ('Internal server error');
       }
       return data;
     }
@@ -28,7 +28,7 @@ class Service {
     async findOne(options) {
       const data = await this.repository.getById(options);
       if (!data) {
-        throw new Error('Not found');
+        return 'Not Found';
       }
       return data;
     }
@@ -37,7 +37,7 @@ class Service {
 
       const data = await this.findOne(id);
       if (!data) {
-        throw new Error('Not found');
+        return 'Not Found';
       }
       
       console.log('in payload ',body);
@@ -49,7 +49,7 @@ class Service {
       console.log(id);
       const data = await this.repository.getById(id);
       if (!data) {
-        throw new Error('Not found');
+        return 'Not Found';
       }
       const deldata = await this.repository.delete(id);
       return deldata;
@@ -60,7 +60,7 @@ class Service {
       const data = await this.repository.getByIds(ids);
       // const data = await this.repository.getByIds(ids);
       if (!data) {
-        throw new Error('Not found');
+        return 'Not Found';
       }
       return data;
     }
@@ -69,7 +69,7 @@ class Service {
       // console.log(id," ",pid);
       const data = await this.repository.deletePA(id, pid);
       // if (!data) {
-      //   throw new Error('Not found');
+      //   return 'Not Found';
       // }
       return data;
     }
@@ -77,12 +77,33 @@ class Service {
     async addtoArray(vid, pid) {
       const data = await this.findOne(vid);
       if (!data) {
-        throw new Error('Not found');
+        return 'Not Found';
       }
       // data.products = data.products || [];
       console.log('in services data ',data);
       data.products.push(pid);
       await this.update(vid, data);
+      return data;
+    }
+
+    async getOrders(vid)
+    {
+      const data = await this.repository.getOrder(vid);
+      if(!data)
+      {
+        return ('not found')
+      }
+      return data;
+    }
+
+
+    async getAllOrders()
+    {
+      const data = await this.repository.getAllOrder();
+      if(!data)
+      {
+        return ('not found')
+      }
       return data;
     }
   }

@@ -1,7 +1,7 @@
 const VendorController = module.exports;
 const VendorServices = require('../Services/Vendor');
 const ProductServices = require('../Services/Product');
-
+const OrderServices = require('../Services/Order');
 // class VendorController {
 //   async getAllVendorProducts(req, res) {
 //     try {
@@ -161,5 +161,21 @@ VendorController.updateProduct = async(req,res)=>{
   {
     console.log('error while updating the product details in soloproduct page');
     res.status(404).send('error while updating the product details in soloproduct page');
+  }
+}
+
+
+VendorController.getOrders = async(req,res)=>{
+  try
+  {
+    console.log('heyyy ',req.vendor.id);
+    const response = await new OrderServices().getOrders(req.vendor.id);
+    if(response==='Not Found') res.status(404).send('No data found');
+    res.status(200).json({response});
+  }
+  catch(e)
+  {
+    console.log('error while fetching the orders details of products in vendors ',e);
+    res.status(404).send('error while fetching the orders details of products in vendors');
   }
 }

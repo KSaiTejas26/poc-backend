@@ -4,7 +4,7 @@ const VendorRequestService = require('../Services/VendorRequest');
 const VendorServices = require('../Services/Vendor');
 const VendorService = require('../Services/Vendor');
 const VendorRequest = require('../Models/VendorRequest');
-
+const OrderServices = require('../Services/Order');
 
 // const AdminController = module.exports;
 // class AdminController {
@@ -367,6 +367,20 @@ AdminController.getVendorSpecific = async (req,res)=>{
   {
     console.log('error while fetching products of vendor specific');
     res.status(404).send('error while fetching products of vendor specific');
+  }
+}
+
+AdminController.getAllOrders = async (req,res)=>{
+  try
+  {
+    const orders = await new OrderServices().getAllOrders();
+    console.log('orderrrr',orders);
+    return res.status(200).json({orders});
+  }
+  catch(e)
+  {
+    console.log('error while fetching all the vendors orders by admin');
+    res.status(404).send('error while fetching all the vendors orders by admin');
   }
 }
 
