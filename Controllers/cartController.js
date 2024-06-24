@@ -19,6 +19,7 @@ const addCart=async(req,res)=>{
     try{
         
         const response = await cartservice.addCart(req.body,req.customer.id);
+       
         res.send(response);
     }
     catch(error)

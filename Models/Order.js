@@ -5,36 +5,35 @@ const Order = new mongoose.Schema({
         type:String,
         required:true
     },
-    productDescription:[{
-        pid:{
-            type:String,
-            required:true,
-            ref:'Product'
+    customer:{
+        type:mongoose.Schema.ObjectId,
+        ref:'Customer',
+        required:true
+    },
+    vendorproducts:{
+        type:[mongoose.Schema.ObjectId],
+        ref:'VendorProducts',
+        required:true,
+        default:[]
+    },
+    order_details:{
+        first_name:{
+            type:String
         },
-        capacity:{
-            type:Number,
-            required:true
+        last_name:{
+            type:String
         },
-        cid:{
-            type:String,
-            required:true,
-            ref:'Customer'
+        email:{
+            type:String
         },
-        status:{
-            type:String,
-            enum:['Pending','Payment Done','Shipping Done','In Warehouse','Delivering','Delivered'],
-            default:'Pending',
-            required:true
+        phone:{
+            type:String
         },
-        date:{
-            type:Date,
-            required:true
-        },
-        deliverDate:{
-            type:Date,
-            required:true
+        address:{
+            type:String
         }
-    }]
+
+    }
 });
 
 const orders = mongoose.model('Order Tracking',Order);

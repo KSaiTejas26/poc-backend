@@ -25,7 +25,7 @@ const createuser=async (req,res)=>{
         customer_first_name: req.body.customer_first_name,
         customer_last_name: req.body.customer_last_name,
         password: secpass,
-        customer_image:req.body.customer_image
+        customer_image:req.body.customer_image,
       });
       res.send("Done Successfully");
     }

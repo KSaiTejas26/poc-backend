@@ -22,6 +22,16 @@ const cartSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref:'Customer'
+  },
+  product_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref:'product'
+  },
+  vendor_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref:'Vendor'
   }
 });
 

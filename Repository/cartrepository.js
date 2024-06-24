@@ -27,7 +27,9 @@ class cartrepository extends CrudRepository
                 "product_brand":obj.product_brand,
                 "price":obj.price,
                 "image":obj.image,
-                "customer_id":id
+                "customer_id":id,
+                "product_id":obj.product_id,
+                "vendor_id":obj.vendor_id
 
             }
             const response = await Cart.create(cobj);
