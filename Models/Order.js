@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+ 
 const Order = new mongoose.Schema({
     orderId:{
         type:String,
@@ -17,24 +17,53 @@ const Order = new mongoose.Schema({
         default:[]
     },
     order_details:{
-        first_name:{
-            type:String
-        },
-        last_name:{
-            type:String
-        },
-        email:{
-            type:String
-        },
         phone:{
-            type:String
+            type:String,
+            required:true
         },
-        address:{
-            type:String
+        address_line:{
+            type:String,
+            required:true
+        },
+        city:{
+            type:String,
+            required:true
+        },
+        state:{
+            type:String,
+            required:true
+        },
+        postal_code:{
+            type:String,
+            required:true
+        },
+        country:{
+            type:String,
+            required:true
         }
-
+    },
+    status:{
+        type:String,
+        required:true,
+        enum:["Pending","Delivered"],
+        default:"Pending"
+    },
+    order_date:{
+        type:Date,
+        required:true,
+        default:Date.now
+    },
+    final_date:{
+        type:Date,
+        required:true,
+        default:function () {
+            const defaultDate = new Date(this.order_date);
+            defaultDate.setDate(defaultDate.getDate() + 7);
+            return defaultDate;
+        }
     }
+ 
 });
-
+ 
 const orders = mongoose.model('Order Tracking',Order);
 module.exports = orders;

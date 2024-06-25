@@ -1,8 +1,20 @@
 const orders = require('../Models/Order');
+const vendorProducts=require('../Models/VendorProducts');
 const orderRepository=require('../Repository/OrderRepository')
 class OrderService{
     constructor(){
         this.orderRepository=new orderRepository();
+    }
+    async getOrder(req,res){
+      const response =await orders.find({customer:req.customer.id})
+      .populate({
+        path: 'vendorproducts',
+        populate: {
+          path: 'products.id',
+          model: 'Product'
+        }
+      });
+      res.send(response);
     }
     async makeOrder(req,res){
         const {products,details}=req.body;

@@ -24,11 +24,19 @@ class OrderRepository extends CrudRepository
         }
     }
     async makeVendorOrder(orderId,vendorId,productList){
+        const newProdlist=productList.map((prod)=>{
+            const obj={
+                id:prod.product_id,
+                capacity:1,
+                status:"Pending"
+            }
+            return obj;
+        })
         const newobj={
             id:"444",
             order_id:orderId,
             vendor:vendorId,
-            products:productList,
+            products:newProdlist,
             status:"Pending"
 
         }

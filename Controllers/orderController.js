@@ -10,4 +10,11 @@ const makeorder=async (req,res)=>{
     }
 
 }
-module.exports={ makeorder };
+const getOrder=async (req,res)=>{
+    try {
+        const response=await OrderService.getOrder(req,res);
+    } catch (error) {
+        console.log(error);
+    }
+}
+module.exports={ makeorder,getOrder };
