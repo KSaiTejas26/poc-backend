@@ -12,4 +12,6 @@ router.get('/getsoloproduct/:id',VendorController.getsoloproduct)
 router.put('/soloproduct/update/:id',VendorController.updateProduct);
 router.delete('/products/:productId/:vendorId',VendorController.deleteProduct1);
 router.get('/orders',fetchvendor,VendorController.getOrders);
+
+
 module.exports=router;

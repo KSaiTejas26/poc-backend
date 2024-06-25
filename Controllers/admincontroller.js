@@ -4,100 +4,7 @@ const VendorRequestService = require('../Services/VendorRequest');
 const VendorServices = require('../Services/Vendor');
 const VendorService = require('../Services/Vendor');
 const VendorRequest = require('../Models/VendorRequest');
-const OrderServices = require('../Services/Order');
-
-// const AdminController = module.exports;
-// class AdminController {
-//     async getAllProducts(req, res) {
-//         try {
-//             const data = await ProductServices.findAll();
-//             if (!data) return res.status(204).send('no data');
-//             return res.status(200).send(data);
-//         } catch (e) {
-//             console.log('error in getting all products for admin', e);
-//             return res.status(404).send('error in getting all products for admin');
-//         }
-//     }
-
-//     async getProfile(req, res) {
-//         try {
-//             const data = await AdminServices.findOne(req.params.id);
-//             return res.status(200).send(data);
-//         } catch (e) {
-//             console.log('error in getting admin profile', e);
-//             return res.status(404).send('error in getting admin profile');
-//         }
-//     }
-
-//     async getRequests(req, res) {
-//         try {
-//             const data = await VendorRequestService.findAll();
-//             if (!data) return res.status(204).send('no requests');
-//             return res.status(200).send(data);
-//         } catch (e) {
-//             console.log('error while fetching all vendor requests for admin in controller', e);
-//             return res.status(404).send('error while fetching all vendor requests for admin in controller');
-//         }
-//     }
-
-//     async getAllVendors(req, res) {
-//         try {
-//             const data = await VendorServices.findAll();
-//             if (!data) return res.status(204).send('no vendors');
-//             return res.status(200).send(data);
-//         } catch (e) {
-//             console.log('error while fetching all vendors for admin', e);
-//             return res.status(404).send('error while fetching all vendors for admin');
-//         }
-//     }
-
-//     async deleteProduct(req, res) {
-//         try {
-//             await ProductServices.remove(req.params.productId);
-//             await VendorServices.removeFromArray(req.params.vendorId, req.params.productId);
-//             return res.status(200).send('successfully deleted the product by admin');
-//         } catch (e) {
-//             console.log('error while deleting the product by admin', e);
-//             return res.status(404).send('error while deleting the product by admin');
-//         }
-//     }
-
-//     async deleteVendor(req, res) {
-//         try {
-//             const data = await VendorServices.findOne(req.params.id);
-//             // Handle deletion logic if needed
-//             return res.status(200).send('successfully deleted the vendor');
-//         } catch (e) {
-//             console.log('error while deleting the vendor', e);
-//             return res.status(404).send('error while deleting the vendor by admin');
-//         }
-//     }
-
-//     async updateProfile(req, res) {
-//         try {
-//             await AdminServices.update(req.params.id, req.body);
-//             console.log('profile of admin updated successfully');
-//             return res.status(200).send('profile of admin updated successfully');
-//         } catch (e) {
-//             console.log('error while updating the profile of admin', e);
-//             return res.status(404).send('error while updating the profile of admin');
-//         }
-//     }
-
-//     async addProduct(req, res) {
-//         try {
-//             const data = await ProductServices.create(req.body);
-//             await VendorServices.update(req.params.id, data._id);
-//             console.log('new product added successfully by admin');
-//             return res.status(200).send('new product added successfully by admin');
-//         } catch (e) {
-//             console.log('error while adding the new product by admin', e);
-//             return res.status(404).send('error while adding the new product by admin');
-//         }
-//     }
-// }
-
-// module.exports = AdminController;
+const OrderMainServices = require('../Services/OrderTrackingServiceMain');
 
 const AdminController = module.exports;
 
@@ -373,7 +280,7 @@ AdminController.getVendorSpecific = async (req,res)=>{
 AdminController.getAllOrders = async (req,res)=>{
   try
   {
-    const orders = await new OrderServices().getAllOrders();
+    const orders = await new OrderMainServices().getAllOrders();
     console.log('orderrrr',orders);
     return res.status(200).json({orders});
   }

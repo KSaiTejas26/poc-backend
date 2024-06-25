@@ -64,11 +64,7 @@ const ProductSchema = new Schema({
   rating: {
     type: Number,
     default: 0
-  },
-  // color: {
-  //   type: [String],
-  //   required: true
-  // }
+  }
 });
 
 const product = mongoose.model('Product', ProductSchema);

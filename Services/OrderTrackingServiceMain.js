@@ -1,7 +1,7 @@
 const Service = require('./service');
-const OrderRepo = require('../Repository/Order');
+const OrderRepo = require('../Repository/OrderTrackingMain');
 const Schema = require('../Models/OrderTrackingMain');
-class OrderService extends Service
+class OrderTrackingMainService extends Service
 {
     constructor()
     {
@@ -10,4 +10,4 @@ class OrderService extends Service
     }
 }
 
-module.exports = OrderService;
+module.exports = OrderTrackingMainService;

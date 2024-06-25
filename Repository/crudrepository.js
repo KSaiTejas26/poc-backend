@@ -128,52 +128,34 @@ class CrudRepository {
     }
   }
 
-
   async getOrder(vid) {
     try {
-      console.log(vid);
-      const data = await this.model.find({}).populate({
-        path: 'productDescription',
+      console.log('vid ', vid)
+      const data = await this.model.find({ vendor: vid }).populate('order_id').populate({ path: 'products', populate: { path: 'id' } }).populate({
+        path: 'order_id',
         populate: {
-          path: 'cid',
-          model: 'Customer'
+          path: 'customer'
         }
       });
-      console.log(data);
-      const newData = data.map((order) => {
-        const filteredDescriptions = order.productDescription.filter(pd => pd.vid.equals(vid));
-        return {
-          ...order.toObject(),
-          productDescription: filteredDescriptions
-        };
-      });
-      newData.map((data) => {
-        console.log('in loop ', data);
-      })
-      console.log('in new data', newData[0].productDescription[0]);
-      return newData;
+      console.log('hiiiiiiii');
+      return data;
     } catch (e) {
-      console.log('error while getting the vendor order details', e);
-      throw e;
+      console.log('error while getting the vendor orders', e);
     }
   }
-
-
-
 
 
   async getAllOrder() {
     try {
-      console.log('in allll')
-      const data = await this.model.find({}).populate("productDescription.vid").populate("productDescription.pid").populate("cid");
-      console.log(data[0].productDescription);
+      const data = await this.model.find({}).populate('orderId').populate('vendorproducts').populate('customer');
+      console.log('data  ', data);
       return data;
     } catch (e) {
-      console.log('error while getting the vendor order details', e);
-      throw e;
+      console.log('error while getting the all orders to admin');
     }
   }
 
 }
+
 
 module.exports = CrudRepository;

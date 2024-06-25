@@ -1,7 +1,7 @@
 const Repo = require('./crudrepository');
 const Order = require('../Models/OrderTrackingMain');
 
-class OrderRepo extends Repo
+class OrderTrackingMainRepo extends Repo
 {
     constructor()
     {
@@ -9,4 +9,4 @@ class OrderRepo extends Repo
     }
 }
 
-module.exports = OrderRepo;
+module.exports = OrderTrackingMainRepo;
