@@ -43,10 +43,6 @@ const VendorProductsSchema = new mongoose.Schema({
     ],
     required:true
   },
-  // products: {
-  //   type: [mongoose.Schema.Types.ObjectId],
-  //   ref: "Product",
-  // },
   status: {
     type: String,
     enum: [

@@ -167,20 +167,45 @@ class CrudRepository {
     }
   }
 
-  async updateStat(vid, mid, pid, newStatus) {
+  async updateStat(vid, mid, pid,sid, newStatus) {
     try {
-      const filter = { _id: vid, order_id: mid };
-      const update = {
-        $set: {
-          "products.$.status": newStatus
-        }
-      };
-      const options = { new: true };
-      const data = await this.model.findOneAndUpdate(filter, update, options);
-      console.log(data);
-      return data;
+      // Convert the string IDs to ObjectId using 'new' keyword
+      console.log(vid+" "+sid);
+      // const vendorObjectId = new mongoose.Types.ObjectId(vid);
+      // const orderObjectId = pid;
+      // const productObjectId = new mongoose.Types.ObjectId(sid);
+
+      // Find the VendorProducts document with the matching vendor, order, and product IDs
+      const vendorProduct = await this.model.findOne({
+        vendor: vid,
+        id: pid,
+        "products.id": sid,
+      });
+      // console.log('heyyyyyyyy',vendorProduct);
+      // Check if the vendor product was found
+      if (!vendorProduct) {
+        throw new Error("Vendor product not found");
+      }
+      // console.log('in prodd ',vendorProduct,"  ",)
+      // Find the specific product in the products array
+      const product = vendorProduct.products.find(
+        (product) => product.id.toString() === sid
+      );
+
+      // Check if the product was found
+      if (!product) {
+        throw new Error("Product not found in the vendor products");
+      }
+
+      // Update the status of the found product
+      product.status = newStatus;
+
+      // Save the updated document back to the database
+      await vendorProduct.save();
+      return "Success";
     } catch (error) {
-      console.error('Error while updating the status of the product by vendor:', error);
+      console.error("Error while updating the status of the product by vendor:", error);
+      throw error; // Rethrow the error after logging it
     }
   }
 
