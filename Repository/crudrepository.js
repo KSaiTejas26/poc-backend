@@ -147,11 +147,40 @@ class CrudRepository {
 
   async getAllOrder() {
     try {
-      const data = await this.model.find({}).populate('orderId').populate('vendorproducts').populate('customer');
+      const data = await this.model.find({}).populate('vendorproducts').populate({
+        path: 'vendorproducts',
+        populate: {
+          path: 'vendor',
+          model: 'Vendor'
+        }
+      }).populate({
+        path: 'vendorproducts',
+        populate: {
+          path: 'products.id',
+          model: 'Product'
+        }
+      }).populate('customer');
       console.log('data  ', data);
       return data;
     } catch (e) {
       console.log('error while getting the all orders to admin');
+    }
+  }
+
+  async updateStat(vid, mid, pid, newStatus) {
+    try {
+      const filter = { _id: vid, order_id: mid };
+      const update = {
+        $set: {
+          "products.$.status": newStatus
+        }
+      };
+      const options = { new: true };
+      const data = await this.model.findOneAndUpdate(filter, update, options);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error('Error while updating the status of the product by vendor:', error);
     }
   }
 

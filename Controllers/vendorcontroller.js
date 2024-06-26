@@ -9,11 +9,11 @@ const OrderTracking = require('../Services/OrderTrackingservice');
 
 VendorController.getAllVendorProducts = async (req, res) => {
   try {
-    console.log('hiiii ',req.vendor);
+    console.log('hiiii ', req.vendor);
     const vendorData = await new VendorServices().findOne(req.vendor.id);
     if (!vendorData) return res.status(204).json({ message: 'no vendor found' });
     const productIds = vendorData.products;
-    console.log('productiddssss ',productIds);
+    console.log('productiddssss ', productIds);
     const products = await new ProductServices().findMany(productIds);
     return res.status(200).json({ products, message: 'products found' });
   } catch (error) {
@@ -59,10 +59,10 @@ VendorController.addProduct = async (req, res) => {
     const vid = req.vendor.id;
     const r = await new VendorServices().findOne(vid);
     const newData = {
-      vid:vid,
-      vname:r.vendor_first_name+" "+r.vendor_last_name
+      vid: vid,
+      vname: r.vendor_first_name + " " + r.vendor_last_name
     }
-    const data = await new ProductServices().create({...req.body,...newData});
+    const data = await new ProductServices().create({ ...req.body, ...newData });
     const response = await new VendorServices().addtoArray(req.vendor.id, data._id);
     return res.status(200).json({ message: 'new product added by vendor successfully' });
   } catch (error) {
@@ -82,44 +82,52 @@ VendorController.editProfile = async (req, res) => {
   }
 };
 
-VendorController.getsoloproduct = async (req,res)=>{
-  try
-  {
+VendorController.getsoloproduct = async (req, res) => {
+  try {
     const response = await new ProductServices().findOne(req.params.id);
     res.status(200).send(response);
   }
-  catch(e)
-  {
+  catch (e) {
     console.log('error while getting solo product details');
     res.status(404).send('error while getting solo product details ')
   }
 }
 
-VendorController.updateProduct = async(req,res)=>{
-  try
-  {
-    const response = await new ProductServices().update(req.params.id,req.body);
+VendorController.updateProduct = async (req, res) => {
+  try {
+    const response = await new ProductServices().update(req.params.id, req.body);
     res.status(200).send('succesfully updated the data of soloproduct page');
   }
-  catch(e)
-  {
+  catch (e) {
     console.log('error while updating the product details in soloproduct page');
     res.status(404).send('error while updating the product details in soloproduct page');
   }
 }
 
 
-VendorController.getOrders = async(req,res)=>{
-  try
-  {
+VendorController.getOrders = async (req, res) => {
+  try {
     // console.log('heyyy ',req.vendor.id);
     const response = await new OrderTracking().getOrders(req.vendor.id);
-    if(response==='Not Found') res.status(404).send('No data found');
-    res.status(200).json({response});
+    if (response === 'Not Found') res.status(404).send('No data found');
+    res.status(200).json({ response });
   }
-  catch(e)
-  {
-    console.log('error while fetching the orders details of products in vendors ',e);
+  catch (e) {
+    console.log('error while fetching the orders details of products in vendors ', e);
     res.status(404).send('error while fetching the orders details of products in vendors');
+  }
+}
+
+
+VendorController.updateStat = async (req, res) => {
+  try {
+    console.log('heyyyy in entered')
+    console.log(req.vendor.id+" "+req.body.orderId+" "+req.body.productId+" "+req.body.id+" "+req.body.newStatus);
+    const response = await new OrderTracking().updateProdStat(req.vendor.id,req.body.orderId,req.body.productId,req.body.id,req.body.newStatus);
+    res.status(200).send('updated the status succesfully');
+  }
+  catch (e) {
+    console.log('error while updating the status of the product by vendor');
+    res.status(404).send('error while updating the status of the product by vendor');
   }
 }

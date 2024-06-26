@@ -106,6 +106,13 @@ class Service {
       }
       return data;
     }
+
+    async updateProdStat(vid,mid,pid,status)
+    {
+      console.log('in services')
+      const data = await this.repository.updateStat(vid,mid,pid,status);
+      return data;
+    }
   }
   
   module.exports = Service;
