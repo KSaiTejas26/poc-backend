@@ -21,4 +21,6 @@ router.delete('/vendor/deleteMany/reject',adminController.rejectSelectedRequest)
 router.get('/getvendorproducts/:id',adminController.getVendorSpecific);
 router.get('/allorders',adminController.getAllOrders);
 
+router.post('/addProductThroughExcel',adminController.addProductThroughExcel) // done
+
 module.exports = router;

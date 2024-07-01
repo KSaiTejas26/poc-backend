@@ -71,6 +71,31 @@ VendorController.addProduct = async (req, res) => {
   }
 };
 
+VendorController.addProductThroughExcel = async (req, res) => {
+  console.log("API called");
+  try {
+    const vid = req.vendor.id;
+    const r = await new VendorServices().findOne(vid);
+    const newData = {
+      vid:vid,
+      vname:r.vendor_first_name+" "+r.vendor_last_name
+    }
+    console.log("in api",newData)
+    console.log("in api2",req.body)
+    const array=req.body;
+    for (let i = 0; i < array.length; i++){
+      const data = await new ProductServices().create({...array[i],...newData});
+      const response = await new VendorServices().addtoArray(req.vendor.id, data._id);
+    }
+    // const data = await new ProductServices().create({...req.body,...newData});
+    // const response = await new VendorServices().addtoArray(req.vendor.id, data._id);
+    return res.status(200).json({ message: 'new products addeddfffffff by vendor successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(404).json({ error, message: 'error while adding the new product by vendor' });
+  }
+};
+
 VendorController.editProfile = async (req, res) => {
   try {
     console.log(req.body);

@@ -104,6 +104,25 @@ AdminController.addProduct = async (req, res) => {
   }
 };
 
+AdminController.addProductThroughExcel = async (req, res) => {
+  try {
+    // console.log('heyyyyyyyyyyyyyyyyyyyyyyyyyyy',req.body," ",req.params.id)
+    const array=req.body;
+    console.log("hii kau",array)
+    for (let i = 0; i < array.length; i++){
+      const data = await new ProductServices().create(array[i]);
+      console.log('dataaasa ',data._id);
+      await new VendorServices().addtoArray(array[i].vid, data._id);
+    }
+    console.log('new product added successfully by admin');
+    return res.status(200).json({ message: 'new product added successfully by admin' });
+  } catch (error) {
+    console.error('error while adding the new product by admin', error);
+    return res.status(404).json({ error, message: 'error while adding the new product by admin' });
+  }
+};
+
+
 AdminController.acceptRequest = async (req,res)=>{
   try
   {

@@ -8,6 +8,8 @@ router.delete('/products/:productId',fetchvendor,VendorController.deleteProduct)
 router.post('/addproduct',fetchvendor,VendorController.addProduct) // done
 router.put('/editprofile',fetchvendor,VendorController.editProfile) // done
 
+
+router.post('/addProductThroughExcel',fetchvendor,VendorController.addProductThroughExcel) // done
 router.get('/getsoloproduct/:id',VendorController.getsoloproduct)
 router.put('/soloproduct/update/:id',VendorController.updateProduct);
 router.delete('/products/:productId/:vendorId',VendorController.deleteProduct1);
