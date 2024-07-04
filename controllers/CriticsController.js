@@ -8,16 +8,24 @@ const getCritics=async (req,res)=>{
     }
 }
 
-const getOnlyNameCritics = async(req,res)=>{
-    try
-    {
-        const response = await Critics.find({});
-        const data = response.map(o=>o.product_name);
-        res.json(data);
+const getOnlyNameCritics = async (req, res) => {
+    try {
+      // Fetch all critics from the database
+      const response = await Critics.find({});
+  
+      // Extract the product_name values and sort them in descending order
+      const sortedProductNames = response
+        .map(o => o.product_name)
+        .sort((b, a) => b.localeCompare(a)); // Sort in descending order
+  
+      // Send the sorted product names as a JSON response
+      res.json(sortedProductNames);
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ message: 'An error occurred while processing the request.' });
     }
-    catch(e)
-    {
-        console.log(e);
-    }
-}
+  };
+  
+
+
 module.exports={getCritics,getOnlyNameCritics};
