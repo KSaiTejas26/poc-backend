@@ -73,7 +73,7 @@ const CriticsSchema = new mongoose.Schema({
  
 });
  
-const Critics = mongoose.model('Critics', CriticsSchema);
+const Critics = mongoose.model('Metrics', CriticsSchema);
  
 module.exports = Critics;
  
