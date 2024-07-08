@@ -16,6 +16,8 @@ app.get('/', (req, res) => {
 app.post('/addform', addData);
 app.get('/getCritics/:pid', getCritics.getCritics);
 app.get('/onlydata', getCritics.getOnlyNameCritics);
+app.get('/getData',getCritics.getCrits);
+
 
 
 app.listen(port, () => {

@@ -1,4 +1,5 @@
 const Critics=require('../models/critics');
+const Metrics=require('../models/metrics');
 const getCritics=async (req,res)=>{
     try {
         const response=await Critics.find({product_name:req.params.pid});
@@ -25,7 +26,15 @@ const getOnlyNameCritics = async (req, res) => {
       res.status(500).json({ message: 'An error occurred while processing the request.' });
     }
   };
+const getCrits=async (req,res)=>{
+  try {
+    const response =await Metrics.find({product_name:req.body});
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+  }
+}
   
 
 
-module.exports={getCritics,getOnlyNameCritics};
+module.exports={getCritics,getOnlyNameCritics,getCrits};
