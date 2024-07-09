@@ -9,7 +9,7 @@ const connecttoMongo = require('./db');
 const addData = require('./controllers/formController');
 const getCritics = require('./controllers/CriticsController');
 const Critics = require('./models/critics');
-
+const Excel = require('./controllers/ExcelController');
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
@@ -17,11 +17,14 @@ app.get('/', (req, res) => {
 app.post('/addform', addData);
 app.get('/getCritics/:pid', getCritics.getCritics);
 app.get('/onlydata', getCritics.getOnlyNameCritics);
-app.get('/scom/warning',getCritics.getScomWarning);
-app.get('/scom/allwarning',getCritics.getAllScomWarning);
-app.get('/scom/critswarning',getCritics.getScomCrits);
-app.get('/scom/allcrits',getCritics.getAllScomCrits);
-app.post('/search',getCritics.getAll);
+app.get('/scom/warning', getCritics.getScomWarning);
+app.get('/scom/allwarning', getCritics.getAllScomWarning);
+app.get('/scom/critswarning', getCritics.getScomCrits);
+app.get('/scom/allcrits', getCritics.getAllScomCrits);
+app.post('/search', getCritics.getAll);
+app.get('/options', Excel.getItems);
+app.post('/products', Excel.getData);
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
