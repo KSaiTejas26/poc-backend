@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
-
+ 
 const customerSchema = new mongoose.Schema({
-  // customer_id: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   default: mongoose.Types.ObjectId,
-  //   required: true
-  // },
   customer_first_name: {
     type: String,
     required: true
@@ -27,12 +22,34 @@ const customerSchema = new mongoose.Schema({
     type: String,
     // required: true
   },
-  address:{
-    type:String,
-    
-  }
+  phone_number:{
+    type: String,
+    required: true
+  },
+  address: [{
+    name: {
+      type: String,
+      required: true
+    },
+    mobile: {
+      type: String,
+      required: true
+    },
+    address: {
+      type: String,
+      required: true
+    },
+    state: {
+      type: String,
+      required: true
+    },
+    pincode: {
+      type: String,
+      required: true
+    }
+  }]
 });
-
+ 
 const Customer = mongoose.model('Customer', customerSchema);
-
+ 
 module.exports = Customer;

@@ -35,6 +35,7 @@ class OrderService{
             return acc;
           }, {});
         const response=await this.orderRepository.makeOrder(products,details);
+        console.log("response",response);
     
         const vendorProducts = await Promise.all(
             uniqueVendors.map(async (vendor) => {
