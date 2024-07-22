@@ -1,11 +1,6 @@
 // const mongoose = require('mongoose');
 
 // const customerSchema = new mongoose.Schema({
-//   // customer_id: {
-//   //   type: mongoose.Schema.Types.ObjectId,
-//   //   default: mongoose.Types.ObjectId,
-//   //   required: true
-//   // },
 //   customer_first_name: {
 //     type: String,
 //     required: true
@@ -27,10 +22,32 @@
 //     type: String,
 //     // required: true
 //   },
-//   address:{
-//     type:String,
-//     required:true
-//   }
+//   phone_number:{
+//     type: String,
+//     required: true
+//   },
+//   address: [{
+//     addressLine: {
+//       type: String,
+//       required: true
+//     },
+//     city: {
+//       type: String,
+//       required: true
+//     },
+//     state: {
+//       type: String,
+//       required: true
+//     },
+//     postalCode: {
+//       type: String,
+//       required: true
+//     },
+//     country: {
+//       type: String,
+//       required: true
+//     }
+//   }]
 // });
 
 // const Customer = mongoose.model('Customer', customerSchema);
@@ -38,8 +55,9 @@
 // module.exports = Customer;
 
 
-const mongoose = require('mongoose');
 
+const mongoose = require('mongoose');
+ 
 const customerSchema = new mongoose.Schema({
   customer_first_name: {
     type: String,
@@ -67,11 +85,15 @@ const customerSchema = new mongoose.Schema({
     required: true
   },
   address: [{
-    addressLine: {
+    name: {
       type: String,
       required: true
     },
-    city: {
+    mobile: {
+      type: String,
+      required: true
+    },
+    address: {
       type: String,
       required: true
     },
@@ -79,17 +101,13 @@ const customerSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    postalCode: {
-      type: String,
-      required: true
-    },
-    country: {
+    pincode: {
       type: String,
       required: true
     }
   }]
 });
-
+ 
 const Customer = mongoose.model('Customer', customerSchema);
-
+ 
 module.exports = Customer;

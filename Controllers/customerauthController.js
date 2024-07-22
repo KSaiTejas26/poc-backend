@@ -112,11 +112,11 @@ const createuser=async (req,res)=>{
         customer_image:'',
         phone_number:req.body.phoneNumber,
         address:{
-          addressLine:req.body.addressLine,
-          city:req.body.city,
+          address:req.body.addressLine,
+          name:req.body.customer_first_name+" "+req.body.customer_last_name,
           state:req.body.state,
-          postalCode:req.body.postalCode,
-          country:req.body.country
+          pincode:req.body.postalCode,
+          mobile:req.body.phone_number
         }
       });
       res.send("Done Successfully");

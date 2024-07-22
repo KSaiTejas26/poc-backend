@@ -28,7 +28,7 @@ app.use('/api',apirouter);
 app.use('/api/category',Category);
 
 app.use('/api/customer',Category);
-app.use('/api/product/',Product);
+app.use('/api/product',Product);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
