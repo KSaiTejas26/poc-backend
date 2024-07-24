@@ -12,6 +12,8 @@ class OrderRepository extends CrudRepository
     }
     async makeOrder(products,details)
     {
+        console.log("make Orders",products);
+        console.log("make Orders",details);
         const customerId=products[0].customer_id;
         const newobj={
             orderId:"2347",

@@ -17,11 +17,11 @@ const Order = new mongoose.Schema({
         default:[]
     },
     order_details:{
-        phone:{
+        mobileNumber:{
             type:String,
             required:true
         },
-        address_line:{
+        address:{
             type:String,
             required:true
         },
@@ -33,12 +33,12 @@ const Order = new mongoose.Schema({
             type:String,
             required:true
         },
-        postal_code:{
+        pinCode:{
             type:String,
             required:true
         },
-        country:{
-            type:String,
+        selected:{
+            type:Boolean,
             required:true
         }
     },
